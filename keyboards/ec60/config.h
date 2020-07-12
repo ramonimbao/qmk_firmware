@@ -23,14 +23,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VENDOR_ID 0x1115
 #define PRODUCT_ID 0xEC60
 #define DEVICE_VER 0x0001
-#define MANUFACTURER Niz & Ramon Imbao
+#define MANUFACTURER Niz& Ramon Imbao
 #define PRODUCT EC60
-#define DESCRIPTION A 60% EC keyboard
+#define DESCRIPTION A 60 % EC keyboard
 
 /* key matrix size */
 #define MATRIX_ROWS 5
 #define MATRIX_COLS 14
-
 
 /*
  * Keyboard Matrix Assignments
@@ -61,6 +60,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     { 1, 2, 3, 0, 7, 4, 6, 5, 12, 13, 14, 11, 10, 8, 9 }
 
 #define UNUSED_PINS
+
+#define DEBUG_MATRIX_SCAN_RATE
 
 /* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION COL2ROW

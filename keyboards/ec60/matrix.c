@@ -1,6 +1,7 @@
 #include <quantum.h>
 #include "analog.h"
 #include "matrix.h"
+#include "print.h"
 
 static const pin_t row_pins[] = MATRIX_ROW_PINS;
 static const pin_t col_pins[] = MATRIX_COL_PINS;
@@ -73,6 +74,8 @@ bool matrix_scan_custom(matrix_row_t current_matrix[]) {
             // Read the ADC
             uint16_t key_value = (analogReadPin(read_pins[is_upper]));
 
+            uprintf("Col: %u | Key Value: %u\n", col, key_value);
+
             // Process the ADC reading
             uint8_t current_col = current_matrix[row] >> column_order[col];
             if (key_value <= release_point) {
@@ -84,7 +87,7 @@ bool matrix_scan_custom(matrix_row_t current_matrix[]) {
             else if (key_value >= actuation_point) {
                 if (!current_col) {
                     // If not actuated and goes above actuation point, consider as pressed
-                    current_matrix[row] |= MATRIX_ROW_SHIFTER << column_order[col];
+                    current_matrix[row] |= (MATRIX_ROW_SHIFTER << column_order[col]);
                 }
             } // Not sure if I should be handling the in between the release point and actuation point yet
         }
