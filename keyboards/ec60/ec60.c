@@ -16,6 +16,23 @@
 
 #include "ec60.h"
 
+// Should follow the LAYOUT_all arrangement
+// __attribute__ ((weak)) const uint16_t release_points[MATRIX_ROWS][MATRIX_COLS] = {
+//     {70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70},  //
+//     {70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70},  //
+//     {95, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70},  //
+//     {70, 0, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 0},    //
+//     {60, 70, 70, 0, 0, 0, 70, 0, 0, 0, 70, 70, 70, 70}         //
+// };
+
+// __attribute__ ((weak)) const uint16_t actuation_points[MATRIX_ROWS][MATRIX_COLS] = {
+//     {85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85},   //
+//     {85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85},   //
+//     {100, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85},  //
+//     {85, 0, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 0},     //
+//     {80, 85, 85, 0, 0, 0, 85, 0, 0, 0, 85, 85, 85, 85}          //
+// };
+
 // Optional override functions below.
 // You can leave any or all of these undefined.
 // These are only required if you want to perform custom actions.

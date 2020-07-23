@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VENDOR_ID 0x1115
 #define PRODUCT_ID 0xEC60
 #define DEVICE_VER 0x0001
-#define MANUFACTURER Niz& Ramon Imbao
+#define MANUFACTURER Ramon Imbao
 #define PRODUCT EC60
 #define DESCRIPTION A 60 % EC keyboard
 
@@ -57,11 +57,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Since the PCB has the columns in the wrong order, this array will select the correct one
 #define COLUMN_ORDER \
-    { 1, 2, 3, 0, 7, 4, 6, 5, 12, 13, 14, 11, 10, 8, 9 }
+    { 1, 2, 3, 0, 4, 7, 5, 6, 9, 10, 11, 8, 12, 13 }
+
+// Should follow the LAYOUT_all arrangement
+#define RELEASE_POINTS { \
+    {70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70}, \
+    {70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70}, \
+    {95, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70}, \
+    {70, 0, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 0}, \
+    {60, 70, 70, 0, 0, 0, 70, 0, 0, 0, 70, 70, 70, 70} \
+}
+
+#define ACTUATION_POINTS { \
+    {85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85}, \
+    {85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85}, \
+    {100, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85}, \
+    {85, 0, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 0}, \
+    {80, 85, 85, 0, 0, 0, 85, 0, 0, 0, 85, 85, 85, 85} \
+}
 
 #define UNUSED_PINS
 
-#define DEBUG_MATRIX_SCAN_RATE
+// #define DEBUG_MATRIX_SCAN_RATE
 
 /* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION COL2ROW
