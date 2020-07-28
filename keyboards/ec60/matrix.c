@@ -87,7 +87,9 @@ bool matrix_scan_custom(matrix_row_t current_matrix[]) {
             writePinLow(OUTPUT_ENABLE_PIN);
 
             int16_t value = analogReadPin(read_pins[is_upper]);
-            // uprintf("Value: %u\n", value);
+            if (row == 0 && col == 3) {
+                uprintf("Value: %u\n", value);
+            }
 
             // Wait a bit, then set row to LOW
             writePinLow(row_pins[row]);
@@ -107,7 +109,7 @@ bool matrix_scan_custom(matrix_row_t current_matrix[]) {
             writePinLow(DRAIN_PIN);
 
             // Process the ADC reading
-            // uint8_t current_col = last_matrix[row] >> column_order[col];
+            uint8_t current_col = last_matrix[row] >> column_order[col];
             // There has to be a better way to do handle buttons with different sensitivities than
             // with if-else statements.
             //
@@ -128,15 +130,15 @@ bool matrix_scan_custom(matrix_row_t current_matrix[]) {
             //     }
             // } else {
                 if (value <= /*70*/ release_points[row][column_order[col]]) {
-                    // if (current_col) {
+                    if (current_col) {
                         // If actuated and goes below release point, consider as released
                         current_matrix[row] &= ~(MATRIX_ROW_SHIFTER << column_order[col]);
-                    // }
+                    }
                 } else if (value >= /*85*/ actuation_points[row][column_order[col]]) {
-                    // if (!current_col) {
+                    if (!current_col) {
                         // If not actuated and goes above actuation point, consider as pressed
                         current_matrix[row] |= (MATRIX_ROW_SHIFTER << column_order[col]);
-                    // }
+                    }
                 }
             // }
             // writePinHigh(OUTPUT_ENABLE_PIN);

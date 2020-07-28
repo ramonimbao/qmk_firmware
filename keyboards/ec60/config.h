@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DEVICE_VER 0x0001
 #define MANUFACTURER Ramon Imbao
 #define PRODUCT EC60
-#define DESCRIPTION A 60 % EC keyboard
+#define DESCRIPTION A 60% EC keyboard
 
 /* key matrix size */
 #define MATRIX_ROWS 5
@@ -61,19 +61,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Should follow the LAYOUT_all arrangement
 #define RELEASE_POINTS { \
-    {70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70}, \
-    {70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70}, \
-    {95, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70}, \
-    {70, 0, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 0}, \
-    {60, 70, 70, 0, 0, 0, 70, 0, 0, 0, 70, 70, 70, 70} \
+    {35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35}, \
+    {35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35}, \
+    {35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35}, \
+    {35, 0, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 0}, \
+    {35, 35, 35, 0, 0, 0, 35, 0, 0, 0, 35, 35, 35, 35} \
 }
 
 #define ACTUATION_POINTS { \
-    {85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85}, \
-    {85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85}, \
-    {100, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85}, \
-    {85, 0, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 0}, \
-    {80, 85, 85, 0, 0, 0, 85, 0, 0, 0, 85, 85, 85, 85} \
+    {100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100}, \
+    {100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100}, \
+    {100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100}, \
+    {100, 0, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 0}, \
+    {100, 100, 100, 0, 0, 0, 100, 0, 0, 0, 100, 100, 100, 100} \
 }
 
 #define UNUSED_PINS
@@ -116,7 +116,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //   /*==== (DEFAULT) use fixed table instead of exp() and sin() ====*/
 //   #define RGBLIGHT_BREATHE_TABLE_SIZE 256      // 256(default) or 128 or 64
 //   /*==== use exp() and sin() ====*/
-//   #define RGBLIGHT_EFFECT_BREATHE_CENTER 1.85  // 1 to 2.7
+//   #define RGBLIGHT_EFFECT_BREATHE_CENTER 1.110  // 1 to 2.7
 //   #define RGBLIGHT_EFFECT_BREATHE_MAX    255   // 0 to 255
 // #endif
 
