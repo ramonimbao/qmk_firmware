@@ -20,12 +20,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_F13, KC_F14, KC_F15, MO(1), MO(2)
     ),
     [1] = LAYOUT(
-        KC_F16, KC_F17, KC_F18, MO(3), _______
+        KC_F16, KC_F17, KC_F18, _______, _______
     ),
     [2] = LAYOUT(
-        KC_F19, KC_F20, KC_F21, _______, MO(3)
+        KC_F19, KC_F20, KC_F21, _______, _______
     ),
     [3] = LAYOUT(
         KC_F22, KC_F23, KC_F24, _______, _______
     )
 };
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    return update_tri_layer_state(state, 1, 2, 3);
+}
