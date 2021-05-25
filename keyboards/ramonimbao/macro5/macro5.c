@@ -17,8 +17,8 @@
 #include "macro5.h"
 
 void keyboard_post_init_kb(void) {
-    rgblight_enable();
-    rgblight_mode(RGBLIGHT_MODE_RAINBOW_SWIRL + 5);
+    rgblight_enable_noeeprom();
+    rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_SWIRL + 5);
 
     keyboard_post_init_user();
 }
