@@ -38,3 +38,29 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     }
     return false;
 }
+
+#ifdef RGB_MATRIX_ENABLE
+led_config_t g_led_config = {{
+    // Key Matrix to LED Index
+    { NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED },
+    { NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED },
+    { NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED },
+    { NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED }
+}, {
+    // LED Index to Position
+    { 214, 48 }, { 173, 48 }, { 132, 48 }, {  92, 48 }, {  51, 48 }, {  10, 48 },
+    {  10,  5 }, {  51,  5 }, {  92,  5 }, { 132,  5 }, { 173,  5 }, { 214,  5 }
+}, {
+    // LED Index to Flags
+    2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2
+}};
+
+void suspend_power_down_user(void) {
+    rgb_matrix_set_suspend_state(true);
+}
+
+void suspend_wakeup_init_user(void) {
+    rgb_matrix_set_suspend_state(false);
+}
+#endif
