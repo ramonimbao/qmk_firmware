@@ -31,7 +31,7 @@
 /* Split Keyboard specific options */
 #define USE_I2C
 #define SPLIT_USB_DETECT
-#define MASTER_RIGHT
+#define MASTER_LEFT
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 5
