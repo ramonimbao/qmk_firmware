@@ -134,7 +134,7 @@ float via_device_indication_song[][2] = SONG(STARTUP_SOUND);
 __attribute__((weak)) void via_set_device_indication(uint8_t value) {
 #if defined(VIA_QMK_BACKLIGHT_ENABLE)
     backlight_toggle();
-#endif  // VIA_QMK_BACKLIGHT_ENABLE
+#endif // VIA_QMK_BACKLIGHT_ENABLE
 #if defined(VIA_QMK_RGBLIGHT_ENABLE)
     rgblight_toggle_noeeprom();
 #endif
@@ -142,7 +142,7 @@ __attribute__((weak)) void via_set_device_indication(uint8_t value) {
     rgb_matrix_toggle_noeeprom();
 #endif
 #if defined(VIA_QMK_AUDIO_ENABLE)
-    if ( value == 0 ) {
+    if (value == 0) {
         wait_ms(10);
         PLAY_SONG(via_device_indication_song);
     }
@@ -225,30 +225,30 @@ __attribute__((weak)) void via_custom_value_command(uint8_t *data, uint8_t lengt
         via_qmk_backlight_command(data, length);
         return;
     }
-#endif  // VIA_QMK_BACKLIGHT_ENABLE
+#endif // VIA_QMK_BACKLIGHT_ENABLE
 
 #if defined(VIA_QMK_RGBLIGHT_ENABLE)
     if (*channel_id == id_qmk_rgblight_channel) {
         via_qmk_rgblight_command(data, length);
         return;
     }
-#endif  // VIA_QMK_RGBLIGHT_ENABLE
+#endif // VIA_QMK_RGBLIGHT_ENABLE
 
 #if defined(VIA_QMK_RGB_MATRIX_ENABLE)
     if (*channel_id == id_qmk_rgb_matrix_channel) {
         via_qmk_rgb_matrix_command(data, length);
         return;
     }
-#endif  // VIA_QMK_RGBLIGHT_ENABL
+#endif // VIA_QMK_RGBLIGHT_ENABL
 
 #if defined(VIA_QMK_AUDIO_ENABLE)
     if (*channel_id == id_qmk_audio_channel) {
         via_qmk_audio_command(data, length);
         return;
     }
-#endif  // VIA_QMK_AUDIO_ENABLE
+#endif // VIA_QMK_AUDIO_ENABLE
 
-    *channel_id = *channel_id;  // force use of variable
+    *channel_id = *channel_id; // force use of variable
 
     // If we haven't returned before here, then let the keyboard level code
     // handle this, if it is overridden, otherwise by default, this will
@@ -269,7 +269,7 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
 
     // If via_command_kb() returns true, the command was fully
     // handled, including calling raw_hid_send()
-    if ( via_command_kb(data, length) ) {
+    if (via_command_kb(data, length)) {
         return;
     }
 
@@ -301,7 +301,7 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
 // Round up to the nearest number of bytes required to hold row state.
 // Multiply by number of rows to get the required size in bytes.
 // Guard against this being too big for the HID message.
-#if ( ((MATRIX_COLS+7)/8) * MATRIX_ROWS <= 28 )
+#if (((MATRIX_COLS + 7) / 8) * MATRIX_ROWS <= 28)
                     uint8_t i = 1;
                     for (uint8_t row = 0; row < MATRIX_ROWS; row++) {
                         matrix_row_t value = matrix_get_row(row);
@@ -551,9 +551,11 @@ void via_qmk_backlight_set_value(uint8_t *data) {
     }
 }
 
-void via_qmk_backlight_save(void) { eeconfig_update_backlight_current(); }
+void via_qmk_backlight_save(void) {
+    eeconfig_update_backlight_current();
+}
 
-#endif  // #if defined(VIA_QMK_BACKLIGHT_ENABLE)
+#endif // #if defined(VIA_QMK_BACKLIGHT_ENABLE)
 
 #endif // BACKLIGHT_ENABLE
 
@@ -641,9 +643,11 @@ void via_qmk_rgblight_set_value(uint8_t *data) {
     }
 }
 
-void via_qmk_rgblight_save(void) { eeconfig_update_rgblight_current(); }
+void via_qmk_rgblight_save(void) {
+    eeconfig_update_rgblight_current();
+}
 
-#endif  // #if defined(VIA_QMK_RGBLIGHT_ENABLE)
+#endif // #if defined(VIA_QMK_RGBLIGHT_ENABLE)
 
 #endif // QMK_RGBLIGHT_ENABLE
 
@@ -710,7 +714,6 @@ void via_qmk_rgb_matrix_set_value(uint8_t *data) {
     uint8_t *value_id   = &(data[0]);
     uint8_t *value_data = &(data[1]);
     switch (*value_id) {
-
         case id_qmk_rgblight_brightness: {
             rgb_matrix_sethsv_noeeprom(rgb_matrix_get_hue(), rgb_matrix_get_sat(), scale8(value_data[0], RGB_MATRIX_MAXIMUM_BRIGHTNESS));
             break;
@@ -735,9 +738,11 @@ void via_qmk_rgb_matrix_set_value(uint8_t *data) {
     }
 }
 
-void via_qmk_rgb_matrix_save(void) { eeconfig_update_rgb_matrix(); }
+void via_qmk_rgb_matrix_save(void) {
+    eeconfig_update_rgb_matrix();
+}
 
-#endif  // #if defined(VIA_QMK_RGB_MATRIX_ENABLE)
+#endif // #if defined(VIA_QMK_RGB_MATRIX_ENABLE)
 
 #if defined(VIA_QMK_AUDIO_ENABLE)
 
@@ -800,6 +805,8 @@ void via_qmk_audio_set_value(uint8_t *data) {
     }
 }
 
-void via_qmk_audio_save(void) { eeconfig_update_audio(audio_config.raw); }
+void via_qmk_audio_save(void) {
+    eeconfig_update_audio(audio_config.raw);
+}
 
-#endif  // #if defined(VIA_QMK_AUDIO_ENABLE)
+#endif // #if defined(VIA_QMK_AUDIO_ENABLE)
