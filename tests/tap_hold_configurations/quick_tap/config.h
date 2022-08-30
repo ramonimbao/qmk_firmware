@@ -16,6 +16,4 @@
 
 #pragma once
 
-#include "test_common.h"
-
-#define QUICK_TAP_TERM 100
+#define QMK_KEYS_PER_SCAN 4
