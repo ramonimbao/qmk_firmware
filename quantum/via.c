@@ -31,7 +31,7 @@
 #include "eeprom.h"
 #include "version.h" // for QMK_BUILDDATE used in EEPROM magic
 
-#if defined(VIA_QMK_RGB_MATRIX_ENABLE)
+#if defined(RGB_MATRIX_ENABLE)
 #    include <lib/lib8tion/lib8tion.h>
 #endif
 
@@ -121,9 +121,9 @@ void via_set_layout_options(uint32_t value) {
     }
 }
 
-#if defined(VIA_QMK_AUDIO_ENABLE)
+#if defined(AUDIO_ENABLE)
 float via_device_indication_song[][2] = SONG(STARTUP_SOUND);
-#endif
+#endif // AUDIO_ENABLE
 
 // Used by VIA to tell a device to flash LEDs (or do something else) when that
 // device becomes the active device being configured, on startup or switching
@@ -132,21 +132,21 @@ float via_device_indication_song[][2] = SONG(STARTUP_SOUND);
 // an even number of times, it can call a toggle function and leave things in
 // the original state.
 __attribute__((weak)) void via_set_device_indication(uint8_t value) {
-#if defined(VIA_QMK_BACKLIGHT_ENABLE)
+#if defined(BACKLIGHT_ENABLE)
     backlight_toggle();
-#endif // VIA_QMK_BACKLIGHT_ENABLE
-#if defined(VIA_QMK_RGBLIGHT_ENABLE)
+#endif // BACKLIGHT_ENABLE
+#if defined(RGBLIGHT_ENABLE)
     rgblight_toggle_noeeprom();
-#endif
-#if defined(VIA_QMK_RGB_MATRIX_ENABLE)
+#endif // RGBLIGHT_ENABLE
+#if defined(RGB_MATRIX_ENABLE)
     rgb_matrix_toggle_noeeprom();
-#endif
-#if defined(VIA_QMK_AUDIO_ENABLE)
+#endif // RGB_MATRIX_ENABLE
+#if defined(AUDIO_ENABLE)
     if (value == 0) {
         wait_ms(10);
         PLAY_SONG(via_device_indication_song);
     }
-#endif
+#endif // AUDIO_ENABLE
 }
 
 // Called by QMK core to process VIA-specific keycodes.
@@ -214,39 +214,44 @@ __attribute__((weak)) void via_custom_value_command_kb(uint8_t *data, uint8_t le
 }
 
 // This is the default handler for custom value commands.
-// It routes channel VIA_QMK_BACKLIGHT_CHANNEL to via_qmk_backlight_command() and
-// channel VIA_QMK_RGBLIGHT_CHANNEL to via_qmk_rgblight_command().
+// It routes commands with channel IDs to command handlers as such:
+//
+//      id_qmk_backlight_channel    ->  via_qmk_backlight_command()
+//      id_qmk_rgblight_channel     ->  via_qmk_rgblight_command()
+//      id_qmk_rgb_matrix_channel   ->  via_qmk_rgb_matrix_command()
+//      id_qmk_audio_channel        ->  via_qmk_audio_command()
+//
 __attribute__((weak)) void via_custom_value_command(uint8_t *data, uint8_t length) {
     // data = [ command_id, channel_id, value_id, value_data ]
     uint8_t *channel_id = &(data[1]);
 
-#if defined(VIA_QMK_BACKLIGHT_ENABLE)
+#if defined(BACKLIGHT_ENABLE)
     if (*channel_id == id_qmk_backlight_channel) {
         via_qmk_backlight_command(data, length);
         return;
     }
-#endif // VIA_QMK_BACKLIGHT_ENABLE
+#endif // BACKLIGHT_ENABLE
 
-#if defined(VIA_QMK_RGBLIGHT_ENABLE)
+#if defined(RGBLIGHT_ENABLE)
     if (*channel_id == id_qmk_rgblight_channel) {
         via_qmk_rgblight_command(data, length);
         return;
     }
-#endif // VIA_QMK_RGBLIGHT_ENABLE
+#endif // RGBLIGHT_ENABLE
 
-#if defined(VIA_QMK_RGB_MATRIX_ENABLE)
+#if defined(RGB_MATRIX_ENABLE)
     if (*channel_id == id_qmk_rgb_matrix_channel) {
         via_qmk_rgb_matrix_command(data, length);
         return;
     }
-#endif // VIA_QMK_RGBLIGHT_ENABL
+#endif // RGBLIGHT_ENABL
 
-#if defined(VIA_QMK_AUDIO_ENABLE)
+#if defined(AUDIO_ENABLE)
     if (*channel_id == id_qmk_audio_channel) {
         via_qmk_audio_command(data, length);
         return;
     }
-#endif // VIA_QMK_AUDIO_ENABLE
+#endif // AUDIO_ENABLE
 
     *channel_id = *channel_id; // force use of variable
 
@@ -452,6 +457,7 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
 }
 
 #if defined(BACKLIGHT_ENABLE)
+<<<<<<< HEAD
 
 void via_qmk_backlight_command(uint8_t *data, uint8_t length) {
     // data = [ command_id, channel_id, value_id, value_data ]
@@ -477,6 +483,8 @@ void via_qmk_backlight_command(uint8_t *data, uint8_t length) {
         }
     }
 }
+=======
+>>>>>>> ac6417a371 (Refactoring the command handlers, formatting)
 
 void via_qmk_backlight_command(uint8_t *data, uint8_t length) {
     // data = [ command_id, channel_id, value_id, value_data ]
@@ -555,10 +563,13 @@ void via_qmk_backlight_save(void) {
     eeconfig_update_backlight_current();
 }
 
-#endif // #if defined(VIA_QMK_BACKLIGHT_ENABLE)
-
 #endif // BACKLIGHT_ENABLE
 
+<<<<<<< HEAD
+#endif // BACKLIGHT_ENABLE
+
+=======
+>>>>>>> ac6417a371 (Refactoring the command handlers, formatting)
 #if defined(RGBLIGHT_ENABLE)
 #    ifndef RGBLIGHT_LIMIT_VAL
 #        define RGBLIGHT_LIMIT_VAL 255
@@ -647,10 +658,13 @@ void via_qmk_rgblight_save(void) {
     eeconfig_update_rgblight_current();
 }
 
-#endif // #if defined(VIA_QMK_RGBLIGHT_ENABLE)
-
 #endif // QMK_RGBLIGHT_ENABLE
 
+<<<<<<< HEAD
+#endif // QMK_RGBLIGHT_ENABLE
+
+=======
+>>>>>>> ac6417a371 (Refactoring the command handlers, formatting)
 #if defined(RGB_MATRIX_ENABLE)
 
 #    if !defined(RGB_MATRIX_MAXIMUM_BRIGHTNESS) || RGB_MATRIX_MAXIMUM_BRIGHTNESS > UINT8_MAX
@@ -742,9 +756,9 @@ void via_qmk_rgb_matrix_save(void) {
     eeconfig_update_rgb_matrix();
 }
 
-#endif // #if defined(VIA_QMK_RGB_MATRIX_ENABLE)
+#endif // RGB_MATRIX_ENABLE
 
-#if defined(VIA_QMK_AUDIO_ENABLE)
+#if defined(AUDIO_ENABLE)
 
 extern audio_config_t audio_config;
 
@@ -809,4 +823,4 @@ void via_qmk_audio_save(void) {
     eeconfig_update_audio(audio_config.raw);
 }
 
-#endif // #if defined(VIA_QMK_AUDIO_ENABLE)
+#endif // QMK_AUDIO_ENABLE
