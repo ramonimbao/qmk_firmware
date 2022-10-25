@@ -1,5 +1,7 @@
 # Dan's KPrepublic BM40 Keymap
 
+> ** There isn't a qmk firmware for the new bm40 v2 pcb yet. Check with your vendor before purchasing.  
+>  
 >This is my personal keymap with an LED indicator support for num lock, caps lock and scroll lock.
 
 ![](https://i.imgur.com/2yclc1B.jpg)
@@ -9,6 +11,11 @@
 > * Switches: Gazzew Boba U4t (62g 2 stage long spring)
 
 <br />
+
+![](https://i.imgur.com/imqhjZW.jpg)
+> * Case: JJ40 Aluminium Acclive Case with Acrylic Diffuser
+> * Keycaps: YMDK DSA Keycaps
+> * Artisan: Rodríguez Cap by Polykeys
 
 ### BM40 LED INDEX
 **_Numlock ( 11 ) Capslock ( 0 or 12 ) Scroll lock ( 23 )_**
@@ -40,19 +47,19 @@
 | **_1_** | TAB |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  | BSP |
 | **_2_** | CTL |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |  ;  |  '  |
 | **_3_** | SFT |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  |  /  | RET |
-| **_4_** | &nbsp;Esc | KOR | WIN | &nbsp;&nbsp;ALT | &nbsp;&nbsp;&nbsp;FN | &nbsp;SPC | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- | &nbsp;&nbsp;&nbsp;&nbsp;= | DEL | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\\ | ENT |
+| **_4_** | &nbsp;ESC | KOR | WIN | &nbsp;&nbsp;ALT | &nbsp;&nbsp;&nbsp;FN | &nbsp;SPC | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- | &nbsp;&nbsp;&nbsp;&nbsp;= | DEL | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\\ | ENT |
 >This is a base layer for typing.
 
 <br />
-
+,
 ### LEFTFN MO(FN)
 
 |         | _A_ | _B_ | _C_ | _D_ | _E_ | _F_ | _G_ | _H_ | _I_ | _J_ | _K_ | _L_ |
 |---------|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
 | **_1_** |  \` |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  | BSP |
-| **_2_** | CTL | LFT | DN  | UP  | RHT | C+/ | PRN |  [  |  ]  |  )  |  :  |  "  |
-| **_3_** | SFT |  [  | ]&nbsp; | HOM | END | PGU | PGD |  (  |  ,  |  .  |  /  | RET |
-| **_4_** | RGB | CAP | INS | ALT | TRN | &nbsp;SPC || &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_ | &nbsp;&nbsp;&nbsp;&nbsp;+ | &nbsp;DEL | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\| | ENT |
+| **_2_** | CTL | LFT | DN  | UP  | RHT | C+/ | PGU |  [  |  ]  |  )  |  :  |  "  |
+| **_3_** | SFT | CAPS| INS | HOM | END | PGD | PRN |  (  |  ,  |  .  |  /  | RET |
+| **_4_** | RGB |  [  |  ]&nbsp;  | ALT | TRN | &nbsp;SPC || &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_ | &nbsp;&nbsp;&nbsp;&nbsp;+ | &nbsp;DEL | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\| | ENT |
 >This is the layer dedicated to number, symbol and navigation keys. ie) arrow keys
 
 <br />
@@ -74,8 +81,8 @@
 |         | _A_ | _B_ | _C_ | _D_ | _E_ | _F_ | _G_ | _H_ | _I_ | _J_ | _K_ | _L_ |
 |---------|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
 | **_1_** | *or/|  7  |  8  |  9  | NUM |     |     |     |     |     |     | BSP |
-| **_2_** | ALT |  4  |  5  |  6  | RET |     |     |     |     |     |     |     |
-| **_3_** |  -  |  1  |  2  |  3  | BSP |     |     |     |     |     |     | RET |
+| **_2_** | ALT |  4  |  5  |  6  | RET |     |     |     |     |     | SFT |     |
+| **_3_** |  -  |  1  |  2  |  3  | BSP |     |     |     |  ,  |  .  | CTL | RET |
 | **_4_** | TRN | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. | &nbsp;&nbsp;&nbsp;0 | SPC | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;LY1 | &nbsp;LY2 | &nbsp;LY3 | &nbsp;LY4 | &nbsp;LY5 |
 >This layer is the numpad.
 <br />
