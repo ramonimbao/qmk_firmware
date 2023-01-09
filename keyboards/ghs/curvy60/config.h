@@ -4,7 +4,7 @@
 #pragma once
 
 /* VIA custom menu*/
-#define VIA_EEPROM_CUSTOM_CONFIG_SIZE 1 // 1 byte for caps lock toggle
+#define VIA_EEPROM_CUSTOM_CONFIG_SIZE 7
 
 /* RGB */
 #define WS2812_PIO_USE_PIO1 // Force the usage of PIO1 peripheral, by default the WS2812 implementation uses the PIO0 peripheral

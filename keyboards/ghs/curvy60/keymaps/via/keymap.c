@@ -34,22 +34,43 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 enum via_indicator_value {
-    id_caps_lock_toggle = 1,
+    id_caps_lock_toggle_on_num_lock    = 1,
+    id_caps_lock_toggle_on_caps_lock   = 2,
+    id_caps_lock_toggle_on_scroll_lock = 3,
+    id_caps_lock_toggle_on_layer_0     = 4,
+    id_caps_lock_toggle_on_layer_1     = 5,
+    id_caps_lock_toggle_on_layer_2     = 6,
+    id_caps_lock_toggle_on_layer_3     = 7
 };
 
-enum lock_indicator {
-    lock_caps = 0,
-};
-
-uint8_t g_value[1];
+uint8_t g_value[7] = {0, 0, 0, 0, 0, 0, 0};
+uint8_t highest_layer = 0;
 
 void indicator_config_set_value(uint8_t* data) {
     // data = [ value_id, value_data ]
     uint8_t* value_id   = &(data[0]);
     uint8_t* value_data = &(data[1]);
     switch (*value_id) {
-        case id_caps_lock_toggle:
-            g_value[lock_caps] = *value_data;
+        case id_caps_lock_toggle_on_num_lock:
+            g_value[0] = *value_data;
+            break;
+        case id_caps_lock_toggle_on_caps_lock:
+            g_value[1] = *value_data;
+            break;
+        case id_caps_lock_toggle_on_scroll_lock:
+            g_value[2] = *value_data;
+            break;
+        case id_caps_lock_toggle_on_layer_0:
+            g_value[3] = *value_data;
+            break;
+        case id_caps_lock_toggle_on_layer_1:
+            g_value[4] = *value_data;
+            break;
+        case id_caps_lock_toggle_on_layer_2:
+            g_value[5] = *value_data;
+            break;
+        case id_caps_lock_toggle_on_layer_3:
+            g_value[6] = *value_data;
             break;
     }
 }
@@ -59,8 +80,26 @@ void indicator_config_get_value(uint8_t* data) {
     uint8_t* value_id   = &(data[0]);
     uint8_t* value_data = &(data[1]);
     switch (*value_id) {
-        case id_caps_lock_toggle:
-            *value_data = g_value[lock_caps];
+        case id_caps_lock_toggle_on_num_lock:
+            *value_data = g_value[0];
+            break;
+        case id_caps_lock_toggle_on_caps_lock:
+            *value_data = g_value[1];
+            break;
+        case id_caps_lock_toggle_on_scroll_lock:
+            *value_data = g_value[2];
+            break;
+        case id_caps_lock_toggle_on_layer_0:
+            *value_data = g_value[3];
+            break;
+        case id_caps_lock_toggle_on_layer_1:
+            *value_data = g_value[4];
+            break;
+        case id_caps_lock_toggle_on_layer_2:
+            *value_data = g_value[5];
+            break;
+        case id_caps_lock_toggle_on_layer_3:
+            *value_data = g_value[6];
             break;
     }
 }
@@ -122,17 +161,44 @@ led_config_t g_led_config = {{
     { NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED }
 }, {
     // LED Index to Position
-    { 6, -32 },
+    { 6, 32 },
 }, {
     // LED Index to Flags
     LED_FLAG_INDICATOR
 }};
 
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-    if (!host_keyboard_led_state().caps_lock || !g_value[lock_caps]) {
+    if (!((host_keyboard_led_state().num_lock && g_value[0]) ||
+        (host_keyboard_led_state().caps_lock && g_value[1]) ||
+        (host_keyboard_led_state().scroll_lock && g_value[2]) ||
+        (highest_layer == 0 && g_value[3]) ||
+        (highest_layer == 1 && g_value[4]) ||
+        (highest_layer == 2 && g_value[5]) ||
+        (highest_layer == 3 && g_value[6]))) {
         RGB_MATRIX_INDICATOR_SET_COLOR(0, 0, 0, 0);
     }
 
     return true;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    switch (get_highest_layer(state)) {
+    case 0:
+        highest_layer = 0;
+        break;
+    case 1:
+        highest_layer = 1;
+        break;
+    case 2:
+        highest_layer = 2;
+        break;
+    case 3:
+        highest_layer = 3;
+        break;
+    default: //  for any other layers, or the default layer
+        highest_layer = 0;
+        break;
+    }
+  return state;
 }
 #endif
