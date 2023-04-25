@@ -1,0 +1,8 @@
+{
+    "usb": {
+        "pid": "0x2004"
+    },
+    "features": {
+        "rgb_matrix": false
+    }
+}

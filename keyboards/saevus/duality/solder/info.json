@@ -1,0 +1,15 @@
+{
+    "usb": {
+        "pid": "0x1004"
+    },
+    "features": {
+        "rgb_matrix": true
+    },
+    "rgb_matrix": {
+        "driver": "WS2812",
+        "layout": [
+            {"flags": 8, "matrix": [0, 15], "x": 211, "y": 0},
+            {"flags": 8, "matrix": [3, 0], "x": 2, "y": 27}
+        ]
+    }
+}
