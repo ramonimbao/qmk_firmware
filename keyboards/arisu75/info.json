@@ -12,7 +12,8 @@
         "mousekey": true,
         "nkro": true,
         "encoder": true,
-        "rgblight": true
+        "rgblight": true,
+        "backlight": true
     },
     "matrix_pins": {
         "rows": ["GP0", "GP1", "GP2", "GP3", "GP4", "GP5", "GP6", "GP7", "GP12", "GP13", "GP14", "GP15"],
@@ -39,6 +40,9 @@
             "rainbow_swirl": true,
             "static_gradient": true
         }
+    },
+    "backlight": {
+        "pin": "GP26"
     },
     "layouts": {
         "LAYOUT": {
