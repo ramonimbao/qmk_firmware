@@ -75,6 +75,10 @@ const led_point_t k_led_matrix_center = LED_MATRIX_CENTER;
 #    define LED_MATRIX_SPD_STEP 16
 #endif
 
+#if !defined(LED_MATRIX_DEFAULT_ON)
+#    define LED_MATRIX_DEFAULT_ON true
+#endif
+
 #if !defined(LED_MATRIX_DEFAULT_MODE)
 #    define LED_MATRIX_DEFAULT_MODE LED_MATRIX_SOLID
 #endif
@@ -126,7 +130,7 @@ void eeconfig_update_led_matrix(void) {
 
 void eeconfig_update_led_matrix_default(void) {
     dprintf("eeconfig_update_led_matrix_default\n");
-    led_matrix_eeconfig.enable = 1;
+    led_matrix_eeconfig.enable = LED_MATRIX_DEFAULT_ON;
     led_matrix_eeconfig.mode   = LED_MATRIX_DEFAULT_MODE;
     led_matrix_eeconfig.val    = LED_MATRIX_DEFAULT_VAL;
     led_matrix_eeconfig.speed  = LED_MATRIX_DEFAULT_SPD;

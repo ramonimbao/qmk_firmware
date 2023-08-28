@@ -85,6 +85,10 @@ __attribute__((weak)) RGB rgb_matrix_hsv_to_rgb(HSV hsv) {
 #    define RGB_MATRIX_SPD_STEP 16
 #endif
 
+#if !defined(RGB_MATRIX_DEFAULT_ON)
+#    define RGB_MATRIX_DEFAULT_ON true
+#endif
+
 #if !defined(RGB_MATRIX_DEFAULT_MODE)
 #    ifdef ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
 #        define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_CYCLE_LEFT_RIGHT
@@ -149,7 +153,7 @@ void eeconfig_update_rgb_matrix(void) {
 
 void eeconfig_update_rgb_matrix_default(void) {
     dprintf("eeconfig_update_rgb_matrix_default\n");
-    rgb_matrix_config.enable = 1;
+    rgb_matrix_config.enable = RGB_MATRIX_DEFAULT_ON;
     rgb_matrix_config.mode   = RGB_MATRIX_DEFAULT_MODE;
     rgb_matrix_config.hsv    = (HSV){RGB_MATRIX_DEFAULT_HUE, RGB_MATRIX_DEFAULT_SAT, RGB_MATRIX_DEFAULT_VAL};
     rgb_matrix_config.speed  = RGB_MATRIX_DEFAULT_SPD;
