@@ -183,9 +183,9 @@ void eeconfig_update_backlight_current(void) {
 }
 
 void eeconfig_update_backlight_default(void) {
-    backlight_config.enable = BACKLIGHT_DEFAULT_ON;
+    backlight_config.enable    = BACKLIGHT_DEFAULT_ON;
     backlight_config.breathing = BACKLIGHT_DEFAULT_BREATHING;
-    backlight_config.level = BACKLIGHT_DEFAULT_LEVEL;
+    backlight_config.level     = BACKLIGHT_DEFAULT_LEVEL;
     eeconfig_update_backlight(backlight_config.raw);
 }
 
